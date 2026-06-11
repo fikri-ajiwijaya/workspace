@@ -9,7 +9,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 RUN apt-get -y dist-upgrade && \
     apt-get -y autopurge && \
-    apt-get -y install curl less man parallel patch wget xz-utils
+    apt-get -y install curl git gnupg less man parallel patch ssh wget xz-utils
 
 ARG username='dev'
 RUN useradd "${username}" -ms '/bin/bash'
