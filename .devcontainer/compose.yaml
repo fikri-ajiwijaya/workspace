@@ -9,8 +9,17 @@ services:
         - type=local,dest=.devcontainer/cache,mode=max
       context: .
     command: sleep infinity
+    post_start:
+      - command: /workspaces/config_hook
     pull_policy: never
     volumes:
       - type: bind
         source: ..
         target: /workspaces/host
+      - type: volume
+        source: config
+        target: /workspaces/config
+
+volumes:
+  config:
+    name: config

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ -x "/workspaces/config/${PROJECT_NAME}/run" ]
+then
+	cd "/workspaces/config/${PROJECT_NAME}"
+	./run
+fi

@@ -17,8 +17,11 @@ ARG username='dev'
 RUN useradd "${username}" -ms '/bin/bash'
 
 ARG COMPOSE_PROJECT_NAME
+COPY --chmod=755 'config_hook' '/workspaces'
 RUN PROJECT_NAME=$(echo "${COMPOSE_PROJECT_NAME}" | sed 's/_devcontainer$//') && \
-    ln -s '/workspaces/host' "/workspaces/${PROJECT_NAME}"
+    ln -s '/workspaces/host' "/workspaces/${PROJECT_NAME}" && \
+    install -d -o "${username}" -g "${username}" '/workspaces/config' && \
+    sed -i "s/\${PROJECT_NAME}/${PROJECT_NAME}/" '/workspaces/config_hook'
 
 USER "${username}"
 
