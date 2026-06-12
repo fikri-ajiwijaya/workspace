@@ -3,6 +3,10 @@ services:
     build:
       args:
         COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+      cache_from:
+        - type=local,src=.devcontainer/cache
+      cache_to:
+        - type=local,dest=.devcontainer/cache,mode=max
       context: .
     command: sleep infinity
     pull_policy: never
