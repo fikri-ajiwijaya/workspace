@@ -1,5 +1,7 @@
 FROM debian:sid
 
+RUN install -d '/workspaces'
+
 RUN apt-get update && \
     apt-get -y install locales && \
     sed -i '/en_US.UTF-8/s/^# //g' '/etc/locale.gen' && \
@@ -13,6 +15,10 @@ RUN apt-get -y dist-upgrade && \
 
 ARG username='dev'
 RUN useradd "${username}" -ms '/bin/bash'
+
+ARG COMPOSE_PROJECT_NAME
+RUN PROJECT_NAME=$(echo "${COMPOSE_PROJECT_NAME}" | sed 's/_devcontainer$//') && \
+    ln -s '/workspaces/host' "/workspaces/${PROJECT_NAME}"
 
 USER "${username}"
 

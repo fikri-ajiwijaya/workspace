@@ -1,0 +1,12 @@
+services:
+  dev:
+    build:
+      args:
+        COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+      context: .
+    command: sleep infinity
+    pull_policy: never
+    volumes:
+      - type: bind
+        source: ..
+        target: /workspaces/host

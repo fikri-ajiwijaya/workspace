@@ -1,12 +1,12 @@
 {
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"ms-azuretools.vscode-containers"
 			]
 		}
-	}
+	},
+	"dockerComposeFile": "compose.yaml",
+	"service": "dev",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
